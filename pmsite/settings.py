@@ -28,7 +28,7 @@ LOGIN_REDIRECT_URL = '/'
 # DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-97+h8n=cyuz-*(8rh2pa++l$1!#%eco@(g43w4zz5&11w=owmr')
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-ALLOWED_HOSTS = ['clustminer.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['gentle-crag-08385.herokuapp.com','clustminer.herokuapp.com','127.0.0.1']
 
 
 # Application definition
