@@ -3,9 +3,9 @@ from django.urls import reverse
 
 
 class User(models.Model):
-    id = models.CharField(max_length=100, primary_key=True)
-    login = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+    id = models.CharField(max_length=255, primary_key=True)
+    login = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
 
     class Meta:
         db_table = "users"
@@ -25,8 +25,8 @@ class User(models.Model):
 #
 
 class Log(models.Model):
-    user_id = models.CharField("user_id", max_length=100)
-    title = models.CharField("title", max_length=100)
+    user_id = models.CharField("user_id", max_length=255)
+    title = models.CharField("title", max_length=255)
     xes_file = models.FileField("xes_file", upload_to="logs", help_text="Выберите файл")
     n_traces = models.IntegerField("n_traces", null=True)
     attributes = models.TextField("attributes", null=True)
