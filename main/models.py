@@ -4,8 +4,8 @@ from django.urls import reverse
 
 class User(models.Model):
     id = models.CharField(max_length=10, primary_key=True)
-    login = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+    login = models.CharField(max_length=10)
+    password = models.CharField(max_length=10)
 
     class Meta:
         db_table = "users"
@@ -15,7 +15,7 @@ class Attribute(models.Model):
     """
     Model representing a book genre (e.g. Science Fiction, Non Fiction).
     """
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=20)
 
     def __str__(self):
         """
@@ -25,8 +25,8 @@ class Attribute(models.Model):
 
 
 class Log(models.Model):
-    user_id = models.CharField("user_id", max_length=20)
-    title = models.CharField("title", max_length=50)
+    user_id = models.CharField("user_id", max_length=10)
+    title = models.CharField("title", max_length=20)
     xes_file = models.FileField("xes_file", upload_to="logs", help_text="Выберите файл")
     n_traces = models.IntegerField("n_traces", null=True)
     attributes = models.TextField("attributes", null=True)
