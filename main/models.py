@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class User(models.Model):
-    id = models.CharField(max_length=20, primary_key=True)
+    id = models.CharField(max_length=100, primary_key=True)
     login = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
