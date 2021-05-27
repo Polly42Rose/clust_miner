@@ -119,6 +119,12 @@ venv.bak/
 
 *secret.txt
 
+# Text backup files
+*.bak
+
+#Database
+*.sqlite3
+
 # mkdocs documentation
 /site
 
