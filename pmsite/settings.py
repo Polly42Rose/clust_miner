@@ -21,13 +21,14 @@ LOGIN_REDIRECT_URL = '/'
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('secret.txt') as f:
-    SECRET_KEY = f.read().strip()
+# with open('secret.txt') as f:
+#     SECRET_KEY = f.read().strip()
 # SECRET_KEY = "django-insecure-97+h8n=cyuz-*(8rh2pa++l$1!#%eco@(g43w4zz5&11w=owmr"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['127.0.0.1']
+# DEBUG = False
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-97+h8n=cyuz-*(8rh2pa++l$1!#%eco@(g43w4zz5&11w=owmr')
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+ALLOWED_HOSTS = ['clustminer.herokuapp.com','127.0.0.1']
 
 
 # Application definition
