@@ -117,7 +117,6 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-*secret.txt
 
 # Text backup files
 *.bak
@@ -135,3 +134,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.DS_Store
+
+**/__pycache__
+
+**/logs
+
+*.pyc
+
+pmsite/secret.txt
+
+posit/secret.txt.pub
