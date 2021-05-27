@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='log',
             name='user_id',
-            field=models.CharField(max_length=20, verbose_name='user_id'),
+            field=models.CharField(max_length=255, verbose_name='user_id'),
         ),
         migrations.AlterField(
             model_name='log',

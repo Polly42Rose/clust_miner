@@ -13,9 +13,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.CharField(max_length=20, primary_key=True, serialize=False)),
-                ('login', models.CharField(max_length=100)),
-                ('password', models.CharField(max_length=100)),
+                ('id', models.CharField(max_length=255, primary_key=True, serialize=False)),
+                ('login', models.CharField(max_length=255)),
+                ('password', models.CharField(max_length=255)),
             ],
             options={
                 'db_table': 'users',

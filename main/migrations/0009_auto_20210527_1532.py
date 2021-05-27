@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='log',
             name='title',
-            field=models.CharField(max_length=100, verbose_name='title'),
+            field=models.CharField(max_length=255, verbose_name='title'),
         ),
         migrations.AlterField(
             model_name='log',
             name='user_id',
-            field=models.CharField(max_length=100, verbose_name='user_id'),
+            field=models.CharField(max_length=255, verbose_name='user_id'),
         ),
     ]

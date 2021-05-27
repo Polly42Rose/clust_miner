@@ -15,14 +15,14 @@ class Migration(migrations.Migration):
             name='Attribute',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
+                ('name', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
             name='Log',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=50, verbose_name='title')),
+                ('title', models.CharField(max_length=255, verbose_name='title')),
                 ('xes_file', models.FileField(upload_to='logs', verbose_name='xes_file')),
                 ('n_traces', models.IntegerField(null=True, verbose_name='n_traces')),
                 ('attributes', models.TextField(verbose_name='attributes')),
