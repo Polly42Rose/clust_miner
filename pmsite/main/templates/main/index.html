@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+
+    <h1>Главная страница</h1>
+    <div id="loading">
+    <br>
+    <br>
+    </div>
+    <div id="to-hide">
+    {% if logs %}
+    <p id="selected-log">Нажмите кнопку "Запустить" для анализа лога.</p>
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Список логов</h6>
+        {% for el in logs %}
+        <div class="d-flex text-muted pt-3">
+          <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+            <div class="d-flex justify-content-between">
+              <a style="width: 60%" href="{{ el.get_absolute_url }}" class="text-gray-dark">{{ el.title }}</a>
+              <a id="select-btn-{{ el.id }}" onclick="run('{{ el.get_absolute_url_for_run }}')" style="width: 20%" class="btn btn-success">Запустить</a>
+              <a id="delete-btn" onclick="delete_log('{{ el.get_absolute_url_for_delete }}', {{ el.title }})" class="btn btn-danger">Удалить</a>
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
+{#        <small class="d-block text-end mt-3">#}
+{#          <a href="#">Все логи</a>#}
+{#        </small>#}
+    </div>
+    {% else %}
+        <p> Логи отсутствуют. Загрузите лог. </p>
+    {% endif %}
+    </div>
+
+    <script>
+
+    function arrayRemove(arr, value) {
+        return arr.filter(function(ele){
+            return ele != value;
+        });
+    }
+
+
+    function delete_log(link, name) {
+        del = confirm("Вы уверены, что хотите удалить лог " + name + "?");
+        if (del) {
+            window.location.href = link;
+        }
+    }
+
+    function hide() {
+        document.getElementById("to-hide").hidden = true;
+        document.getElementById("loading").innerHTML = "" +
+                {#"<p align=\"center\">Пожалуйста, подождите. Идёт обработка лога...</p>" +#}
+                "<img src=\"https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif\" style='width: 100%'>";
+
+    }
+
+    function run(log) {
+        hide();
+        window.location.href = log;
+    }
+
+    </script>
+{% endblock %}
+

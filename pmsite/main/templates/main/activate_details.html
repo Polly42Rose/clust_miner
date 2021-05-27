@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Построение модели процессов
+{% endblock %}
+
+{% block content %}
+  <h1> Модель процесса для лога {{ title }}</h1>
+  <div id="loading">
+    <br>
+    <br>
+    </div>
+  <div id="to-hide">
+  <div >
+  <div id="myzoom">
+    <img src="data:image/png;base64,{{ image }}" style="max-width: 100%; height: 50%; object-fit: contain; cursor: zoom-in;">
+  </div>
+   </div>
+
+      <p></p>
+  <p class="link-primary"  id='download-text' style="cursor: pointer;">Скачать модель</p>
+  </div>
+    <script src="https://www.unpkg.com/@panzoom/panzoom/dist/panzoom.js"></script>
+    <script>
+        const element = document.getElementById('myzoom')
+        const panzoom = Panzoom(element, {
+              maxScale: 10,
+              minScale: 1,
+              step: 0.1,
+        });
+
+        // enable mouse wheel
+        {#const parent = element#}
+        element.addEventListener('wheel', panzoom.zoomWithWheel);
+    </script>
+    <script>
+    $('#download-text').on('click', function(event) {
+            document.getElementById("loading").innerHTML = "" +
+                {#"<p align=\"center\">Пожалуйста, подождите. Идёт обработка лога...</p>" +#}
+                "<img src=\"https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif\" style='width: 100%'>"
+
+            document.getElementById("to-hide").hidden = true;
+            download();
+        });
+
+    function download() {
+        fetch('download$')
+          .then(resp => resp.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            // the filename you want
+            a.download = 'model.pnml';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          }).then(data => {
+              document.getElementById("loading").innerHTML = "<br><br>";
+              document.getElementById("to-hide").hidden = false;
+            });
+    }
+    </script>
+
+{% endblock %}

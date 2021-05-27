@@ -1,0 +1,6 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<p>Вы вышли из системы!</p>
+    <a id='submit-button' href="{% url 'login' %}" class="btn btn-success">Войти</a>
+{% endblock %}

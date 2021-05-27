@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block content %}
+
+    <h1>Вход в личный кабинет</h1>
+    <br>
+    <br>
+
+    <p id="selected-log">Введите логин и пароль</p>
+    <form id="post-form" action="/create_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.login }} <br>
+        {{ form.password }}<br>
+        {{ form.password }}<br>
+       <button id='submit-button' type="submit" class="btn btn-success">Войти</button>
+       <button id='submit-button' type="submit" class="btn btn-danger">Зарегистрироваться</button>
+       <span>{{ error }}</span>
+    </form>
+
+{% endblock %}
+

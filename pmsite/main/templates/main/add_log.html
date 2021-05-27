@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Добавление лога
+{% endblock %}
+
+{% block content %}
+    <h1>Добавление лога</h1>
+    <div id="loading">
+    <br>
+    <br>
+    </div>
+    <form id="post-form" action="/create_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.title }} <br>
+        {{ form.xes_file }}<br>
+       <button id='submit-button' type="submit" class="btn btn-success">Отправить</button>
+       <span>{{ error }}</span>
+    </form>
+
+    <script>
+
+        $('#post-form').on('submit', function(event){
+                event.preventDefault();
+
+                document.getElementById("loading").innerHTML = "" +
+                    {#"<p align=\"center\">Пожалуйста, подождите. Идёт обработка лога...</p>" +#}
+                    "<img src=\"https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif\" style='width: 100%'>"
+
+                document.getElementById("post-form").hidden = true;
+                create_post();})
+
+        function create_post() {
+            var formData = new FormData();
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+            formData.append('title', $('#log-title').val());
+            formData.append('xes_file', document.getElementById("log-file").files[0]);
+            {#if (!result) {#}
+            {#                alert({{ error }});#}
+            {#                document.getElementById("loading").hidden = true;#}
+            {#                document.getElementById("post-form").hidden = false;#}
+            {#                document.getElementById("log-file").value = null;#}
+            {#            } else {#}
+            {#                window.location.href = "/";#}
+            {#            }#}
+            {#try{#}
+            fetch('add-log', {method: "POST", body: formData}).then(
+                    response => {
+                        if (response.ok) {
+                            window.location.href = "/";
+                        } else if (response.status == 404) {
+                            alert("Неверный формат файла! Загрузите файл формата .xes.");
+                            document.getElementById("loading").hidden = true;
+                            document.getElementById("post-form").hidden = false;
+                            document.getElementById("log-file").value = null;
+                        } else {
+                            alert("Ошибка при чтении файла!");
+                            document.getElementById("loading").hidden = true;
+                            document.getElementById("post-form").hidden = false;
+                            document.getElementById("log-file").value = null;
+                        }
+                    }
+                );
+            {#catch (e){#}
+            {#    alert(e)#}
+
+        }
+    </script>
+
+{% endblock %}

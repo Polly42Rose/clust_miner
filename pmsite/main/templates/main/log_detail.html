@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Информация о логе
+{% endblock %}
+
+{% block content %}
+  <h1>Лог {{ log.title }}</h1>
+    <br>
+    <br>
+
+  <p><strong>Количество трасс:</strong> {{ log.n_traces }}</p>
+  <p><strong>Атрибуты:</strong> {{ log.attributes }}</p>
+{#  <p><a href="example.com">Файл</a></p>#}
+
+{% endblock %}
