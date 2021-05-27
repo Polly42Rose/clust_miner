@@ -16,7 +16,7 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/Polly42Rose/clust_miner/issues",
     },
     classifiers=[
-        "Programming Language :: Python :: 3.6.3",
+        "Programming Language :: Python :: 3.6.13",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
